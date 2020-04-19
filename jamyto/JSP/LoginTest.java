@@ -24,9 +24,6 @@ public class LoginTest extends HttpServlet {
                 new FileWriter("error.log",true),10);
               objBw.write(data);
               objBw.close();
-    
-    
-
         } catch(Exception e) {
             e.printStackTrace();
         }
