@@ -42,7 +42,7 @@
     </HEAD>
 
     <body>
-        <div class="result" id ="result"></div>
+        <div class="result"></div>
 
         <div id="userlogoff" style="display:<%=userlogoffdisp %>">
             <form id="form_1" method="post" accept-charset="utf-8" return false>
@@ -58,52 +58,10 @@
             </form>
         </div>
         <script type="text/javascript">
-
-            document.getElementById("login").onclick = function() {
-
-                var xhr = new XMLHttpRequest();
-                
-                xhr.open('POST', './urlLogin');
-                xhr.responseType="text";
-                xhr.onreadystatechange = function() {
-
-                
-                    if(xhr.readyState === 4 && xhr.status === 200) {
-                        document.getElementById("result").innerHTML= xhr.responseText;
-                        if (xhr.responseText.trim()=="ログインしました"){
-                            document.getElementById("userlogoff").style.display ="none";
-                            document.getElementById("userlogin").style.display ="";
-                            document.getElementById("name2").value=document.getElementById("name").value;
-                        }
-                    }
-                }
-
-                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-                xhr.send('name='+document.getElementById("name").value + '&password='+document.getElementById("password").value);
-
-            };
-            document.getElementById("logoff").onclick = function() {
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('POST', './urlLogoff');
-                xhr.onreadystatechange = function() {
-
-                    if(xhr.readyState === 4 && xhr.status === 200) {
-                        document.getElementById("result").innerHTML="";
-                        document.getElementById("userlogoff").style.display ="";
-                        document.getElementById("userlogin").style.display ="none";
-                        document.getElementById("name").value="";
-                        document.getElementById("password").value="";
-                    }
-                }
-
-                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-                xhr.send();
-
-            };
-            /*
-            // 以下のコードでも動くが、まだよく内容をわかってない
+            // $("")
+            // html要素 p h1 ul
+            // id #main
+            // class .result
             $(function(){
                 // Ajax button click
                 $('#login').on('click',function(){
@@ -121,11 +79,9 @@
 
                         if (data.trim()=="ログインしました"){
                             // まだ未熟なためメッセージで判定
-                            document.getElementById("userlogoff").style.display ="none";
-                            document.getElementById("userlogin").style.display ="";
-                            document.getElementById("name2").value=$('#name').val();
-
-
+                            $('#userlogoff').css("display","none");
+                            $('#userlogin').css("display","");
+                            $('#name2').val($('#name').val());
                         }
                     })
                     // Ajaxリクエストが失敗した時発動
@@ -148,9 +104,10 @@
                     // Ajaxリクエストが成功した時発動
                     .done( (data) => {
                         $('.result').html(data);
-                        document.getElementById("userlogoff").style.display ="";
-                        document.getElementById("userlogin").style.display ="none";
-
+                        $('#userlogoff').css("display","");
+                        $('#userlogin').css("display","none");
+                        $('#name').val("");
+                        $('#password').val("");
                     })
                     // Ajaxリクエストが失敗した時発動
                     .fail( (data) => {
@@ -163,7 +120,6 @@
                 });
 
             });
-            */
 
         </script>
     </body>
