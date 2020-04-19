@@ -49,8 +49,6 @@
     } else {
         result="登録失敗";
     }
-
-
 %>
 <HTML>
     <HEAD>
